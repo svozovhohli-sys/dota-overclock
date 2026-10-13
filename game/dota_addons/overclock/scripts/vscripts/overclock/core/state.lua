@@ -52,6 +52,29 @@ M.sandbox = {
 	dummy_armor = 0,
 }
 
+-- Mechanics Lab live config. Populated by mechanics/manager.lua from
+-- data/mechanics.lua. Each entry: { enabled = bool, <field> = value, ... }.
+M.mechanics = {}
+
+-- Game rules live values. Populated by rules/manager.lua from
+-- data/game_rules.lua. Keyed by rule id.
+M.rules = {}
+
+-- Entity stat tuning groups (throne / towers / creeps / heroes).
+-- Values are read live by modifier_oc_entity_stat.
+M.entities = {
+	throne = { hp = 0, armor = 0, damage = 0, magic_resist = 0, attack_speed = 0 },
+	towers = { hp = 0, armor = 0, damage = 0, magic_resist = 0, attack_speed = 0 },
+	creeps = { hp = 0, armor = 0, damage = 0, magic_resist = 0, attack_speed = 0 },
+	heroes = { hp = 0, armor = 0, damage = 0, magic_resist = 0, attack_speed = 0 },
+}
+
+-- Ability browser state (abilities/browser.lua).
+M.ability = {
+	query = "",
+	results = {},
+}
+
 function M.get_player(pid)
 	return M.players[pid]
 end

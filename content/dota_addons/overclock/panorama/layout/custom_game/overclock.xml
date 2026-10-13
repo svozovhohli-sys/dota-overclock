@@ -106,6 +106,8 @@
 				</Panel>
 				<Label id="ParamsHint" class="OverclockText" text="" />
 				<Panel id="ParamList" class="OverclockList" />
+				<Label class="OverclockH2" text="Способности: результаты поиска" />
+				<Panel id="AbilityResults" class="OverclockList" />
 			</Panel>
 		</Panel>
 	</Panel>

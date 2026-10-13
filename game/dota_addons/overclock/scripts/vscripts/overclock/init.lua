@@ -36,10 +36,23 @@ OC.Core.Timers = req("overclock.core.timers")
 OC.Core.Commands = req("overclock.core.commands")
 OC.Core.Players = req("overclock.core.players")
 OC.Core.Params = req("overclock.core.params")
+OC.Core.Convars = req("overclock.core.convars")
 
 -- data -----------------------------------------------------------------------
 OC.Data = OC.Data or {}
 OC.Data.Tunables = req("overclock.data.tunables")
+
+-- rules (game-wide tuning: GameRules/GameMode/ConVars + entity stats) ---------
+OC.Rules = OC.Rules or {}
+OC.Rules.Manager = req("overclock.rules.manager")
+
+-- mechanics (combat mechanic lab) --------------------------------------------
+OC.Mechanics = OC.Mechanics or {}
+OC.Mechanics.Manager = req("overclock.mechanics.manager")
+
+-- abilities (capability browser) ---------------------------------------------
+OC.Abilities = OC.Abilities or {}
+OC.Abilities.Browser = req("overclock.abilities.browser")
 
 -- sandbox --------------------------------------------------------------------
 OC.Sandbox = OC.Sandbox or {}

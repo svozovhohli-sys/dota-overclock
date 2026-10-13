@@ -29,6 +29,9 @@ M.features = {
 	free_camera = true,
 	time_control = true,
 	debug_overlay = true,
+	rules = true,
+	mechanics = true,
+	abilities = true,
 }
 
 -- Teams used by the sandbox.

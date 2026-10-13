@@ -69,6 +69,15 @@ function GameMode:InitGameMode()
 		Run.install()
 	end
 	OC.Data.Tunables.install(OC.Core.Params)
+	if Config.is_feature("rules") then
+		OC.Rules.Manager.install(OC.Core.Params)
+	end
+	if Config.is_feature("mechanics") then
+		OC.Mechanics.Manager.install(OC.Core.Params)
+	end
+	if Config.is_feature("abilities") then
+		OC.Abilities.Browser.install(OC.Core.Params)
+	end
 	Bridge.install()
 
 	self:RegisterEvents()

@@ -24,6 +24,7 @@ function Init()
 	GameEvents.Subscribe("oc_stats", OnStats);
 	GameEvents.Subscribe("oc_notify", OnNotify);
 	GameEvents.Subscribe("oc_params", OnParams);
+	GameEvents.Subscribe("oc_abilities", OnAbilities);
 
 	OverclockTab("hub");
 	GameEvents.SendCustomGameEventToServer("oc_request_state", {});
@@ -75,6 +76,36 @@ function OnStats(rows)
 function OnNotify(data)
 {
 	$.Msg("[OVERCLOCK] ", data.text);
+}
+
+// --------------------------------------------------------------------------
+// ability browser results
+// --------------------------------------------------------------------------
+
+function OnAbilities(data)
+{
+	var parent = $("#AbilityResults");
+	if (!parent) { return; }
+	parent.RemoveAndDeleteChildren();
+	var results = (data && data.results) || [];
+	if (data && data.note)
+	{
+		var note = $.CreatePanel("Label", parent, "");
+		note.AddClass("OverclockText");
+		note.text = data.note;
+	}
+	for (var i = 0; i < results.length; i++)
+	{
+		var dump = results[i];
+		var head = $.CreatePanel("Label", parent, "");
+		head.AddClass("OverclockH2");
+		head.text = dump.ability;
+		var values = dump.values || [];
+		for (var j = 0; j < values.length; j++)
+		{
+			AddListRow(parent, values[j].key + " = " + FormatNum(values[j].value), null, null);
+		}
+	}
 }
 
 // --------------------------------------------------------------------------
@@ -139,6 +170,14 @@ function AddParamRow(parent, p)
 	{
 		var ab = MakeBtn(ctrl, "выполнить");
 		ab.SetPanelEvent("onactivate", function () { OverclockParamInvoke(p.id); });
+	}
+	else if (p.type === "text")
+	{
+		var te = $.CreatePanel("TextEntry", ctrl, "");
+		te.AddClass("OverclockInput");
+		te.text = (p.value === null || p.value === undefined) ? "" : String(p.value);
+		var tb = MakeBtn(ctrl, "ok");
+		tb.SetPanelEvent("onactivate", function () { OverclockParamSet(p.id, te.text); });
 	}
 	else
 	{
