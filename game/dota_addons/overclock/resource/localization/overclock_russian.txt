@@ -1,0 +1,51 @@
+"lang"
+{
+	"Language"	"Russian"
+	"Tokens"
+	{
+		// окно
+		"overclock_title"			"OVERCLOCK"
+		"overclock_tab_hub"			"Хаб"
+		"overclock_tab_sandbox"		"Песочница"
+		"overclock_tab_stats"		"Статистика"
+		"overclock_tab_patch"		"Лаборатория"
+		"overclock_tab_roguelike"	"Роглайк"
+
+		// статус
+		"overclock_status_mode"		"Режим"
+		"overclock_status_paused"	"Пауза"
+		"overclock_status_players"	"Игроки"
+		"overclock_status_spawned"	"Заспавнено"
+
+		// песочница
+		"overclock_sandbox_spawn"	"Создать"
+		"overclock_sandbox_dummy"	"Манекен"
+		"overclock_sandbox_clear"	"Убрать всё"
+		"overclock_sandbox_pause"	"Пауза"
+
+		// статистика
+		"overclock_stats_dps"		"DPS"
+		"overclock_stats_peak"		"Пик"
+		"overclock_stats_total"		"Всего"
+		"overclock_stats_ehp"		"ЭХП"
+		"overclock_stats_ttk"		"Время убийства"
+
+		// лаборатория
+		"overclock_patch_apply"		"Применить"
+		"overclock_patch_clear"		"Сбросить"
+		"overclock_patch_benchmark"	"Замер"
+		"overclock_patch_compare"	"Сравнить"
+
+		// роглайк
+		"overclock_run_start"		"Начать забег"
+		"overclock_run_wave"		"Волна"
+		"overclock_run_depth"		"Глубина"
+		"overclock_run_gold"		"Золото"
+		"overclock_run_curse"		"Выбери хворь"
+		"overclock_run_reward"		"Выбери награду"
+		"overclock_run_shop"		"Магазин"
+		"overclock_run_next"		"Следующая волна"
+		"overclock_run_abort"		"Сдаться"
+		"overclock_run_shards"		"Осколки"
+	}
+}

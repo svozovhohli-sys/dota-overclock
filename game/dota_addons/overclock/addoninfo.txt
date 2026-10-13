@@ -1,0 +1,58 @@
+"AddonInfo"
+{
+	// ---------------------------------------------------------------------
+	//  OVERCLOCK — big sandbox / Balance Lab / roguelike custom game for
+	//  Dota 2. Lives entirely inside dota_addons and never touches the base
+	//  game, so regular Dota 2 can not be broken by it.
+	// ---------------------------------------------------------------------
+	"m_bIsPlayable"          "1"
+	"m_bIsHidden"            "0"
+
+	"IsPlayable"             "1"
+	"Hidden"                 "0"
+
+	"maps"
+	{
+		"overclock"
+		{
+			"MapName"        "overclock"
+			"MaxPlayers"     "10"
+			"Version"        "1.0.0"
+		}
+	}
+
+	// Dev keys (see Panorama Game.AddCommand bindings).
+	"Default_Keys"
+	{
+		"01"
+		{
+			"Key"   "F5"
+			"Name"  "OC_ToggleHub"
+		}
+		"02"
+		{
+			"Key"   "F6"
+			"Name"  "OC_ToggleSandbox"
+		}
+		"03"
+		{
+			"Key"   "F7"
+			"Name"  "OC_ToggleStats"
+		}
+		"04"
+		{
+			"Key"   "F8"
+			"Name"  "OC_TogglePatch"
+		}
+		"05"
+		{
+			"Key"   "F9"
+			"Name"  "OC_ToggleRoguelike"
+		}
+		"06"
+		{
+			"Key"   "F10"
+			"Name"  "OC_OpenModifierConsole"
+		}
+	}
+}

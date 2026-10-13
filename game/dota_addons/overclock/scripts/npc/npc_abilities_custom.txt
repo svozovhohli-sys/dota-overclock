@@ -1,0 +1,7 @@
+// OVERCLOCK :: custom abilities
+// Kept intentionally small. Abilities used by the sandbox/roguelike that are
+// not built-in can be authored here. The hub/menu is driven entirely by a
+// Panorama UI rather than abilities, so this file may stay near-empty.
+"DOTAAbilities"
+{
+}

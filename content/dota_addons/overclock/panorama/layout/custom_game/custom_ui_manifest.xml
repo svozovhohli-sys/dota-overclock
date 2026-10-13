@@ -1,0 +1,9 @@
+<!-- OVERCLOCK custom UI manifest.
+     Mounts our overlay into the HUD slot. The JS re-enables the default
+     action panel / top bar via GameUI.SetDefaultUIEnabled so gameplay HUD
+     stays usable (see overclock.js). -->
+<root>
+	<Panel>
+		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/overclock.xml" />
+	</Panel>
+</root>

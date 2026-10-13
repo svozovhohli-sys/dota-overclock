@@ -1,0 +1,23 @@
+# compiled / generated
+*.vmap_c
+*.vtex_c
+*.vjs_c
+*.vcss_c
+*.vxml_c
+*.vpcf_c
+*.vsnd_c
+*.vmdl_c
+*.vmat_c
+*.vphys_c
+*.vdata_c
+*.vtxt_c
+*.vwn_c
+*.kakapo_c
+
+# editor junk
+*.tmp
+*.autosave
+*.sav
+*.log
+.DS_Store
+Thumbs.db

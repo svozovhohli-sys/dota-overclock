@@ -1,0 +1,206 @@
+/* OVERCLOCK overlay styles */
+
+.OverclockRoot
+{
+	horizontal-align: left;
+	vertical-align: top;
+	margin: 8px;
+	width: 520px;
+	height: 600px;
+	background-color: #10141bee;
+	border: 1px solid #3af0c8;
+	border-radius: 6px;
+	box-shadow: #000000aa 0px 4px 18px 0px;
+	flow-children: down;
+}
+
+.OverclockHeader
+{
+	width: 100%;
+	height: 44px;
+	background-color: #1a2230;
+	flow-children: right;
+	align: center middle;
+}
+
+.OverclockTitle
+{
+	font-size: 24px;
+	font-weight: bold;
+	color: #3af0c8;
+	margin-left: 12px;
+	letter-spacing: 2px;
+}
+
+.OverclockStatus
+{
+	flow-children: right;
+	horizontal-align: right;
+	margin-right: 12px;
+}
+
+.OverclockStatusItem
+{
+	font-size: 13px;
+	color: #9fb0c3;
+	margin-left: 12px;
+}
+
+.OverclockToggle
+{
+	horizontal-align: right;
+	margin-right: 8px;
+}
+
+.OverclockBody
+{
+	width: 100%;
+	height: fill;
+	flow-children: down;
+}
+
+.OverclockTabs
+{
+	width: 100%;
+	height: 36px;
+	flow-children: right;
+	background-color: #141b26;
+}
+
+.OverclockTab
+{
+	height: 100%;
+	padding: 0px 12px;
+	background-color: #141b26;
+	border-bottom: 2px solid transparent;
+}
+
+.OverclockTab Label
+{
+	color: #c8d4e0;
+	font-size: 14px;
+}
+
+.OverclockTab:hover
+{
+	background-color: #1f2a3a;
+}
+
+.OverclockPage
+{
+	width: 100%;
+	height: fill;
+	flow-children: down;
+	padding: 12px;
+	overflow: squish scroll;
+}
+
+.OverclockH1
+{
+	font-size: 20px;
+	color: #3af0c8;
+	margin-bottom: 8px;
+}
+
+.OverclockH2
+{
+	font-size: 15px;
+	color: #e8c86a;
+	margin: 8px 0px;
+}
+
+.OverclockText
+{
+	font-size: 14px;
+	color: #b8c6d4;
+	margin-bottom: 8px;
+}
+
+.OverclockRow
+{
+	width: 100%;
+	flow-children: right;
+	margin-bottom: 6px;
+}
+
+.OverclockColumn
+{
+	width: fill;
+	font-size: 13px;
+	color: #9fb0c3;
+}
+
+.OverclockButton
+{
+	margin-right: 6px;
+	padding: 6px 12px;
+	background-color: #223047;
+	border: 1px solid #3af0c855;
+	border-radius: 4px;
+}
+
+.OverclockButton Label
+{
+	color: #dce8f4;
+	font-size: 13px;
+}
+
+.OverclockButton:hover
+{
+	background-color: #2e4a6b;
+}
+
+.OverclockInput
+{
+	width: 240px;
+	height: 30px;
+	margin-right: 6px;
+	background-color: #0b0f15;
+	color: #e6eef7;
+	padding: 4px 8px;
+}
+
+.OverclockList
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.OverclockListRow
+{
+	width: 100%;
+	height: 34px;
+	flow-children: right;
+	align: center middle;
+	background-color: #161d29;
+	margin-bottom: 3px;
+	padding: 0px 8px;
+}
+
+.OverclockListRow Button
+{
+	horizontal-align: right;
+}
+
+.OverclockListRow Label
+{
+	color: #c8d4e0;
+	font-size: 13px;
+}
+
+.OverclockListText
+{
+	width: fill;
+	color: #c8d4e0;
+	font-size: 13px;
+}
+
+.OverclockPageHidden
+{
+	visibility: collapse;
+}
+
+.OverclockBodyHidden
+{
+	visibility: collapse;
+}

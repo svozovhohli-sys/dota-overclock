@@ -1,0 +1,101 @@
+<!-- OVERCLOCK main overlay -->
+<root>
+	<styles>
+		<include src="file://{resources}/styles/custom_game/overclock.css" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/overclock.js" />
+		<include src="file://{resources}/scripts/custom_game/keys.js" />
+	</scripts>
+
+	<Panel id="OverclockRoot" class="OverclockRoot">
+		<Panel class="OverclockHeader">
+			<Label class="OverclockTitle" text="#overclock_title" />
+			<Panel class="OverclockStatus">
+				<Label id="StatusMode" class="OverclockStatusItem" text="Mode: -" />
+				<Label id="StatusPaused" class="OverclockStatusItem" text="Paused: no" />
+				<Label id="StatusPlayers" class="OverclockStatusItem" text="Players: 0" />
+				<Label id="StatusSpawned" class="OverclockStatusItem" text="Spawned: 0" />
+			</Panel>
+			<Button id="ToggleButton" class="OverclockToggle" onactivate="OverclockToggle()">
+				<Label text="≡" />
+			</Button>
+		</Panel>
+
+		<Panel id="Body" class="OverclockBody">
+			<Panel class="OverclockTabs">
+				<Button class="OverclockTab" onactivate="OverclockTab('hub')"><Label text="#overclock_tab_hub" /></Button>
+				<Button class="OverclockTab" onactivate="OverclockTab('sandbox')"><Label text="#overclock_tab_sandbox" /></Button>
+				<Button class="OverclockTab" onactivate="OverclockTab('stats')"><Label text="#overclock_tab_stats" /></Button>
+				<Button class="OverclockTab" onactivate="OverclockTab('patch')"><Label text="#overclock_tab_patch" /></Button>
+				<Button class="OverclockTab" onactivate="OverclockTab('roguelike')"><Label text="#overclock_tab_roguelike" /></Button>
+			</Panel>
+
+			<!-- HUB -->
+			<Panel id="Page-hub" class="OverclockPage">
+				<Label class="OverclockH1" text="OVERCLOCK" />
+				<Label class="OverclockText" text="Песочница, лаборатория баланса и роглайк в одной кастомке." />
+				<Panel class="OverclockRow">
+					<Button class="OverclockButton" onactivate="OverclockAction('set_mode','sandbox')"><Label text="Песочница" /></Button>
+					<Button class="OverclockButton" onactivate="OverclockAction('set_mode','lab')"><Label text="Лаборатория" /></Button>
+					<Button class="OverclockButton" onactivate="OverclockAction('set_mode','roguelike')"><Label text="Роглайк" /></Button>
+				</Panel>
+			</Panel>
+
+			<!-- SANDBOX -->
+			<Panel id="Page-sandbox" class="OverclockPage">
+				<Label class="OverclockH1" text="#overclock_tab_sandbox" />
+				<Panel class="OverclockRow">
+					<TextEntry id="SpawnInput" class="OverclockInput" placeholder="npc_dota_hero_axe" />
+					<Button class="OverclockButton" onactivate="OverclockSpawn()"><Label text="#overclock_sandbox_spawn" /></Button>
+					<Button class="OverclockButton" onactivate="OverclockAction('spawn_dummy')"><Label text="#overclock_sandbox_dummy" /></Button>
+				</Panel>
+				<Panel class="OverclockRow">
+					<Button class="OverclockButton" onactivate="OverclockCmd('spawn npc_dota_creep_badguys_melee')"><Label text="Крип" /></Button>
+					<Button class="OverclockButton" onactivate="OverclockCmd('spawn npc_dota_neutral_centaur_khan')"><Label text="Кентавр" /></Button>
+					<Button class="OverclockButton" onactivate="OverclockCmd('spawn npc_dota_roshan')"><Label text="Рошан" /></Button>
+					<Button class="OverclockButton" onactivate="OverclockAction('clear')"><Label text="#overclock_sandbox_clear" /></Button>
+				</Panel>
+			</Panel>
+
+			<!-- STATS -->
+			<Panel id="Page-stats" class="OverclockPage">
+				<Label class="OverclockH1" text="#overclock_tab_stats" />
+				<Panel class="OverclockRow">
+					<Label class="OverclockColumn" text="#overclock_stats_dps" />
+					<Label class="OverclockColumn" text="#overclock_stats_peak" />
+					<Label class="OverclockColumn" text="#overclock_stats_total" />
+				</Panel>
+				<Panel id="DpsList" class="OverclockList" />
+			</Panel>
+
+			<!-- PATCH LAB -->
+			<Panel id="Page-patch" class="OverclockPage">
+				<Label class="OverclockH1" text="#overclock_tab_patch" />
+				<Panel id="PatchList" class="OverclockList" />
+				<Panel class="OverclockRow">
+					<Button class="OverclockButton" onactivate="OverclockAction('patch_benchmark','now')"><Label text="#overclock_patch_benchmark" /></Button>
+					<Button class="OverclockButton" onactivate="OverclockAction('patch_clear')"><Label text="#overclock_patch_clear" /></Button>
+				</Panel>
+			</Panel>
+
+			<!-- ROGUELIKE -->
+			<Panel id="Page-roguelike" class="OverclockPage">
+				<Label class="OverclockH1" text="#overclock_tab_roguelike" />
+				<Panel id="RunStatus" class="OverclockRow">
+					<Label id="RunWave" class="OverclockStatusItem" text="Wave: -" />
+					<Label id="RunDepth" class="OverclockStatusItem" text="Depth: -" />
+					<Label id="RunGold" class="OverclockStatusItem" text="Gold: -" />
+					<Label id="RunEnemies" class="OverclockStatusItem" text="Enemies: -" />
+				</Panel>
+				<Label id="RunPrompt" class="OverclockH2" text="" />
+				<Panel id="RunChoices" class="OverclockList" />
+				<Panel class="OverclockRow">
+					<Button class="OverclockButton" onactivate="OverclockAction('run_start')"><Label text="#overclock_run_start" /></Button>
+					<Button class="OverclockButton" onactivate="OverclockAction('run_next')"><Label text="#overclock_run_next" /></Button>
+					<Button class="OverclockButton" onactivate="OverclockAction('run_abort')"><Label text="#overclock_run_abort" /></Button>
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

@@ -1,0 +1,51 @@
+"lang"
+{
+	"Language"	"English"
+	"Tokens"
+	{
+		// window
+		"overclock_title"			"OVERCLOCK"
+		"overclock_tab_hub"			"Hub"
+		"overclock_tab_sandbox"		"Sandbox"
+		"overclock_tab_stats"		"Stats"
+		"overclock_tab_patch"		"Patch Lab"
+		"overclock_tab_roguelike"	"Roguelike"
+
+		// status
+		"overclock_status_mode"		"Mode"
+		"overclock_status_paused"	"Paused"
+		"overclock_status_players"	"Players"
+		"overclock_status_spawned"	"Spawned"
+
+		// sandbox
+		"overclock_sandbox_spawn"	"Spawn"
+		"overclock_sandbox_dummy"	"Dummy"
+		"overclock_sandbox_clear"	"Clear all"
+		"overclock_sandbox_pause"	"Pause"
+
+		// stats
+		"overclock_stats_dps"		"DPS"
+		"overclock_stats_peak"		"Peak"
+		"overclock_stats_total"		"Total"
+		"overclock_stats_ehp"		"EHP"
+		"overclock_stats_ttk"		"TTK"
+
+		// patch lab
+		"overclock_patch_apply"		"Apply"
+		"overclock_patch_clear"		"Clear"
+		"overclock_patch_benchmark"	"Benchmark"
+		"overclock_patch_compare"	"Compare"
+
+		// roguelike
+		"overclock_run_start"		"Start run"
+		"overclock_run_wave"		"Wave"
+		"overclock_run_depth"		"Depth"
+		"overclock_run_gold"		"Gold"
+		"overclock_run_curse"		"Choose a curse"
+		"overclock_run_reward"		"Choose a reward"
+		"overclock_run_shop"		"Shop"
+		"overclock_run_next"		"Next wave"
+		"overclock_run_abort"		"Abandon"
+		"overclock_run_shards"		"Shards"
+	}
+}
