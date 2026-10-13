@@ -143,4 +143,33 @@ return {
 		stacks = "stack",
 		kv = { stat = "move_speed", value = 100 },
 	},
+	-- auras ------------------------------------------------------------------
+	{
+		id = "aura_slow",
+		modifier = "modifier_oc_aura",
+		file = "overclock/lua_modifiers/modifier_oc_aura",
+		label = "Аура: замедление врагов",
+		category = "aura",
+		duration = nil,
+		stacks = "refresh",
+		kv = {
+			effect = "modifier_oc_slow",
+			radius = 900,
+			team = (DOTA_UNIT_TARGET_TEAM_ENEMIES or 2),
+		},
+	},
+	{
+		id = "aura_attack",
+		modifier = "modifier_oc_aura",
+		file = "overclock/lua_modifiers/modifier_oc_aura",
+		label = "Аура: +атака союзникам",
+		category = "aura",
+		duration = nil,
+		stacks = "refresh",
+		kv = {
+			effect = "modifier_oc_buff_attack",
+			radius = 900,
+			team = (DOTA_UNIT_TARGET_TEAM_FRIENDLY or 1),
+		},
+	},
 }

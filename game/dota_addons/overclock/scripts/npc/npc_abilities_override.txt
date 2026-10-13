@@ -1,0 +1,27 @@
+// OVERCLOCK :: base ability overrides
+//
+// Values here OVERRIDE the shipped Dota ability data for this custom game only
+// (regular Dota is never modified). They are static: they take effect at load,
+// not at runtime. The Patch Lab emulates runtime balance changes on top of this.
+//
+// The file must keep the "DOTAAbilities" root. Entries are keyed by the base
+// ability's internal name. Keep changes commented out by default so the addon
+// ships vanilla-neutral; uncomment to experiment.
+"DOTAAbilities"
+{
+	// Example 1: change a base ability's damage per level.
+	// "axe_counter_helix"
+	// {
+	// 	"AbilityDamage"		"100 110 120 130"
+	// }
+
+	// Example 2: change a cooldown / mana cost.
+	// "axe_berserkers_call"
+	// {
+	// 	"AbilityCooldown"	"14 13 12 11"
+	// 	"AbilityManaCost"	"80 90 100 110"
+	// }
+
+	// Example 3: change a hero's base stats (hero overrides live in
+	// npc_heroes_override.txt instead; see docs).
+}
