@@ -52,6 +52,12 @@ function M.notify(pid, text, kind)
 	M.push(pid, "oc_notify", { text = tostring(text), kind = kind or "info" })
 end
 
+-- Push the full live-parameter list (values resolved for this player).
+function M.push_params(pid)
+	local Params = require("overclock.core.params")
+	M.push(pid, "oc_params", { params = Params.list({ pid = pid }) })
+end
+
 -- Broadcast a full state snapshot (UI redraws from this).
 function M.broadcast_state()
 	State = require("overclock.core.state")
@@ -188,13 +194,35 @@ actions.stats = function(pid)
 	return true
 end
 
-function M.handle_action(pid, action, id)
+-- live parameter panel ------------------------------------------------------
+
+actions.param_get = function(pid)
+	M.push_params(pid)
+	return true
+end
+
+actions.param_set = function(pid, id, data)
+	local Params = require("overclock.core.params")
+	local ok, v = Params.set(id, data and data.value, { pid = pid })
+	M.push_params(pid)
+	return ok, v
+end
+
+actions.param_invoke = function(pid, id)
+	local Params = require("overclock.core.params")
+	Params.invoke(id, { pid = pid })
+	M.push_params(pid)
+	M.broadcast_state()
+	return true
+end
+
+function M.handle_action(pid, action, id, data)
 	local fn = actions[action]
 	if not fn then
 		Log.warn("unknown UI action: %s", tostring(action))
 		return false, "unknown action"
 	end
-	local ok, res = pcall(fn, pid, id)
+	local ok, res = pcall(fn, pid, id, data)
 	if not ok then
 		Log.error("UI action %s failed: %s", tostring(action), tostring(res))
 		return false, tostring(res)
@@ -299,6 +327,24 @@ local function register_commands()
 			return true, snap
 		end,
 	})
+	Commands.register("params", {
+		help = "список живых параметров", usage = "params", section = "params",
+		run = function(ctx)
+			M.push_params(ctx.pid)
+			return true, require("overclock.core.params").list({ pid = ctx.pid })
+		end,
+	})
+	Commands.register("set", {
+		help = "изменить живой параметр", usage = "set <id> <value>", section = "params",
+		run = function(ctx)
+			local id, val = ctx.args[1], ctx.args[2]
+			if not id then return false, "укажи id параметра" end
+			local ok, res = require("overclock.core.params").set(id, val, { pid = ctx.pid })
+			M.push_params(ctx.pid)
+			M.broadcast_state()
+			return ok, res
+		end,
+	})
 end
 
 -- ---------------------------------------------------------------------------
@@ -323,7 +369,7 @@ function M.install()
 	CustomGameEventManager:RegisterListener("oc_action", function(_, data)
 		local pid = data.PlayerID or data.playerid
 		if pid ~= nil then
-			M.handle_action(pid, data.action, data.id)
+			M.handle_action(pid, data.action, data.id, data)
 		end
 	end)
 
@@ -333,6 +379,7 @@ function M.install()
 			local payload = State.snapshot()
 			payload.run = _G.OC.Roguelike.Run.view(State.run)
 			M.push(pid, "oc_state", payload)
+			M.push_params(pid)
 		end
 	end)
 

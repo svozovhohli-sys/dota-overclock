@@ -26,10 +26,12 @@ M.ARENA_RADIUS = 1400
 M.CENTER = Vector(0, 0, 0)
 
 function M.difficulty(wave)
-	-- HP multiplier grows ~18% per wave, count every other wave.
-	local hp_mult = 1.0 * (1.18 ^ (wave - 1))
-	local dmg_mult = 1.0 * (1.10 ^ (wave - 1))
-	local count = 4 + math.floor((wave - 1) * 1.5)
+	-- HP multiplier grows ~18% per wave, count every other wave, all scaled by
+	-- the live tuning factors from the params panel.
+	local hp_mult = (1.18 ^ (wave - 1)) * (Config.tuning.rogue_hp_scale or 1.0)
+	local dmg_mult = (1.10 ^ (wave - 1)) * (Config.tuning.rogue_dmg_scale or 1.0)
+	local count = math.max(1, math.floor((4 + (wave - 1) * 1.5) *
+		(Config.tuning.rogue_count_scale or 1.0)))
 	return hp_mult, dmg_mult, count
 end
 
@@ -61,6 +63,10 @@ function M.spawn(run, wave)
 			local base_hp = unit:GetMaxHealth()
 			unit:SetMaxHealth(math.floor(base_hp * u.hp_mult))
 			unit:SetHealth(unit:GetMaxHealth())
+			if unit.SetBaseDamageMin and unit.SetBaseDamageMax then
+				unit:SetBaseDamageMin(unit:GetBaseDamageMin() * u.dmg_mult)
+				unit:SetBaseDamageMax(unit:GetBaseDamageMax() * u.dmg_mult)
+			end
 			unit.oc_run = run  -- tag for the kill listener
 			spawned[#spawned + 1] = unit
 		end

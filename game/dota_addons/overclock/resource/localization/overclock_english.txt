@@ -10,6 +10,7 @@
 		"overclock_tab_stats"		"Stats"
 		"overclock_tab_patch"		"Patch Lab"
 		"overclock_tab_roguelike"	"Roguelike"
+		"overclock_tab_params"		"Parameters"
 
 		// status
 		"overclock_status_mode"		"Mode"

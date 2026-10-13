@@ -46,6 +46,12 @@ M.debug = {
 -- Active patch set id (patch lab).
 M.active_patch = nil
 
+-- Sandbox defaults (tweakable live via the params panel).
+M.sandbox = {
+	dummy_hp = 10000,
+	dummy_armor = 0,
+}
+
 function M.get_player(pid)
 	return M.players[pid]
 end

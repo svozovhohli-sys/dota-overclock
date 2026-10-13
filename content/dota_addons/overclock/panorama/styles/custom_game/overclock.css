@@ -195,6 +195,33 @@
 	font-size: 13px;
 }
 
+.OverclockParamCtrl
+{
+	horizontal-align: right;
+	flow-children: right;
+	align: center middle;
+}
+
+.OverclockParamValue
+{
+	min-width: 70px;
+	text-align: center;
+	color: #3af0c8;
+	font-size: 14px;
+	margin: 0px 4px;
+}
+
+.OverclockToggleOn
+{
+	background-color: #1f6b52;
+	border-color: #3af0c8;
+}
+
+.OverclockRight
+{
+	horizontal-align: right;
+}
+
 .OverclockPageHidden
 {
 	visibility: collapse;

@@ -103,12 +103,14 @@ function M.spawn_dummy(pos, opts)
 	local dummy = M.spawn_unit(Config.DUMMY_UNIT, pos, { team = team })
 	if not dummy then return nil end
 	dummy:AddNewModifier(dummy, nil, "modifier_oc_dummy", {})
-	if opts.hp then
-		dummy:SetMaxHealth(opts.hp)
-		dummy:SetHealth(opts.hp)
+	local hp = opts.hp or (State.sandbox and State.sandbox.dummy_hp)
+	local armor = opts.armor or (State.sandbox and State.sandbox.dummy_armor)
+	if hp then
+		dummy:SetMaxHealth(hp)
+		dummy:SetHealth(hp)
 	end
-	if opts.armor then
-		dummy:SetPhysicalArmorBaseValue(opts.armor)
+	if armor then
+		dummy:SetPhysicalArmorBaseValue(armor)
 	end
 	State.dummies[dummy:entindex()] = true
 	Events.emit("spawner:dummy", dummy)

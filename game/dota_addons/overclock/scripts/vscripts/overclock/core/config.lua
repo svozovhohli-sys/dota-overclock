@@ -48,6 +48,11 @@ M.tuning = {
 	tick_interval = 0.25,        -- general system think period
 	auto_save_interval = 30.0,   -- meta save cadence (seconds)
 	combo_gap = 0.6,             -- default gap between queued abilities
+
+	-- Roguelike difficulty scaling multipliers (live-tunable via params panel).
+	rogue_hp_scale = 1.0,
+	rogue_dmg_scale = 1.0,
+	rogue_count_scale = 1.0,
 }
 
 -- Meta progression schema version (bump to migrate saves).

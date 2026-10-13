@@ -4,6 +4,7 @@
 "use strict";
 
 var lastState = null;
+var paramById = {};
 
 // --------------------------------------------------------------------------
 // lifecycle
@@ -22,9 +23,11 @@ function Init()
 	GameEvents.Subscribe("oc_state", OnState);
 	GameEvents.Subscribe("oc_stats", OnStats);
 	GameEvents.Subscribe("oc_notify", OnNotify);
+	GameEvents.Subscribe("oc_params", OnParams);
 
 	OverclockTab("hub");
 	GameEvents.SendCustomGameEventToServer("oc_request_state", {});
+	GameEvents.SendCustomGameEventToServer("oc_action", { action: "param_get", id: "" });
 }
 
 // --------------------------------------------------------------------------
@@ -72,6 +75,103 @@ function OnStats(rows)
 function OnNotify(data)
 {
 	$.Msg("[OVERCLOCK] ", data.text);
+}
+
+// --------------------------------------------------------------------------
+// live parameters
+// --------------------------------------------------------------------------
+
+function OnParams(data)
+{
+	var list = (data && data.params) || [];
+	paramById = {};
+	for (var i = 0; i < list.length; i++)
+	{
+		paramById[list[i].id] = list[i];
+	}
+	RenderParams(list);
+}
+
+function RenderParams(list)
+{
+	var parent = $("#ParamList");
+	parent.RemoveAndDeleteChildren();
+
+	var lastSection = null;
+	for (var i = 0; i < list.length; i++)
+	{
+		var p = list[i];
+		if (p.section !== lastSection)
+		{
+			lastSection = p.section;
+			var head = $.CreatePanel("Label", parent, "");
+			head.AddClass("OverclockH2");
+			head.text = p.section;
+		}
+		AddParamRow(parent, p);
+	}
+}
+
+function AddParamRow(parent, p)
+{
+	var row = $.CreatePanel("Panel", parent, "");
+	row.AddClass("OverclockListRow");
+
+	var label = $.CreatePanel("Label", row, "");
+	label.AddClass("OverclockListText");
+	label.text = p.label;
+
+	var ctrl = $.CreatePanel("Panel", row, "");
+	ctrl.AddClass("OverclockParamCtrl");
+
+	if (p.type === "bool")
+	{
+		var b = MakeBtn(ctrl, p.value ? "вкл" : "выкл");
+		b.SetHasClass("OverclockToggleOn", p.value === true);
+		b.SetPanelEvent("onactivate", function () { OverclockParamSet(p.id, (p.value ? 0 : 1)); });
+	}
+	else if (p.type === "enum")
+	{
+		var eb = MakeBtn(ctrl, String(p.value));
+		eb.SetPanelEvent("onactivate", function () { OverclockParamCycle(p.id); });
+	}
+	else if (p.type === "action")
+	{
+		var ab = MakeBtn(ctrl, "выполнить");
+		ab.SetPanelEvent("onactivate", function () { OverclockParamInvoke(p.id); });
+	}
+	else
+	{
+		var minus = MakeBtn(ctrl, "-");
+		minus.SetPanelEvent("onactivate", function () { OverclockParamStep(p.id, -1); });
+
+		var val = $.CreatePanel("Label", ctrl, "");
+		val.AddClass("OverclockParamValue");
+		val.text = FormatNum(p.value) + (p.unit ? p.unit : "");
+
+		var plus = MakeBtn(ctrl, "+");
+		plus.SetPanelEvent("onactivate", function () { OverclockParamStep(p.id, 1); });
+	}
+}
+
+function MakeBtn(parent, text)
+{
+	var btn = $.CreatePanel("Button", parent, "");
+	btn.AddClass("OverclockButton");
+	var bl = $.CreatePanel("Label", btn, "");
+	bl.text = text;
+	return btn;
+}
+
+function FormatNum(v)
+{
+	if (v === null || v === undefined) { return "-"; }
+	if (typeof v === "number")
+	{
+		if (v === Math.floor(v)) { return String(v); }
+		return v.toFixed(2);
+	}
+	return String(v);
 }
 
 // --------------------------------------------------------------------------
@@ -192,9 +292,50 @@ function OverclockSpawn()
 	}
 }
 
+function OverclockParamSet(id, value)
+{
+	GameEvents.SendCustomGameEventToServer("oc_action", { action: "param_set", id: id, value: String(value) });
+}
+
+function OverclockParamStep(id, dir)
+{
+	var p = paramById[id];
+	if (!p) { return; }
+	var step = (p.step !== undefined && p.step !== null && p.step > 0) ? p.step : 1;
+	var v = (typeof p.value === "number") ? p.value : parseFloat(p.value);
+	if (isNaN(v)) { v = 0; }
+	v = v + dir * step;
+	if (p.min !== undefined && p.min !== null && v < p.min) { v = p.min; }
+	if (p.max !== undefined && p.max !== null && v > p.max) { v = p.max; }
+	OverclockParamSet(id, v);
+}
+
+function OverclockParamCycle(id)
+{
+	var p = paramById[id];
+	if (!p || !p.options || p.options.length === 0) { return; }
+	var idx = 0;
+	for (var i = 0; i < p.options.length; i++)
+	{
+		if (p.options[i][0] === p.value) { idx = i; break; }
+	}
+	var next = p.options[(idx + 1) % p.options.length][0];
+	OverclockParamSet(id, next);
+}
+
+function OverclockParamInvoke(id)
+{
+	GameEvents.SendCustomGameEventToServer("oc_action", { action: "param_invoke", id: id });
+}
+
+function OverclockParamsRefresh()
+{
+	GameEvents.SendCustomGameEventToServer("oc_action", { action: "param_get", id: "" });
+}
+
 function OverclockTab(tab)
 {
-	var pages = ["hub", "sandbox", "stats", "patch", "roguelike"];
+	var pages = ["hub", "sandbox", "stats", "patch", "roguelike", "params"];
 	for (var i = 0; i < pages.length; i++)
 	{
 		var page = $("#Page-" + pages[i]);

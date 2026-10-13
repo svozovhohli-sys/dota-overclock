@@ -10,6 +10,7 @@
 		"overclock_tab_stats"		"Статистика"
 		"overclock_tab_patch"		"Лаборатория"
 		"overclock_tab_roguelike"	"Роглайк"
+		"overclock_tab_params"		"Параметры"
 
 		// статус
 		"overclock_status_mode"		"Режим"

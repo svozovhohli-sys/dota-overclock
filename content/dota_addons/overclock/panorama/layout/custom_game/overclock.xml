@@ -29,6 +29,7 @@
 				<Button class="OverclockTab" onactivate="OverclockTab('stats')"><Label text="#overclock_tab_stats" /></Button>
 				<Button class="OverclockTab" onactivate="OverclockTab('patch')"><Label text="#overclock_tab_patch" /></Button>
 				<Button class="OverclockTab" onactivate="OverclockTab('roguelike')"><Label text="#overclock_tab_roguelike" /></Button>
+				<Button class="OverclockTab" onactivate="OverclockTab('params')"><Label text="#overclock_tab_params" /></Button>
 			</Panel>
 
 			<!-- HUB -->
@@ -95,6 +96,16 @@
 					<Button class="OverclockButton" onactivate="OverclockAction('run_next')"><Label text="#overclock_run_next" /></Button>
 					<Button class="OverclockButton" onactivate="OverclockAction('run_abort')"><Label text="#overclock_run_abort" /></Button>
 				</Panel>
+			</Panel>
+
+			<!-- PARAMS (live parameters) -->
+			<Panel id="Page-params" class="OverclockPage">
+				<Panel class="OverclockRow">
+					<Label class="OverclockH1" text="#overclock_tab_params" />
+					<Button class="OverclockButton OverclockRight" onactivate="OverclockParamsRefresh()"><Label text="Обновить" /></Button>
+				</Panel>
+				<Label id="ParamsHint" class="OverclockText" text="" />
+				<Panel id="ParamList" class="OverclockList" />
 			</Panel>
 		</Panel>
 	</Panel>

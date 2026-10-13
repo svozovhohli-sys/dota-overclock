@@ -35,6 +35,11 @@ OC.Core.Events = req("overclock.core.events")
 OC.Core.Timers = req("overclock.core.timers")
 OC.Core.Commands = req("overclock.core.commands")
 OC.Core.Players = req("overclock.core.players")
+OC.Core.Params = req("overclock.core.params")
+
+-- data -----------------------------------------------------------------------
+OC.Data = OC.Data or {}
+OC.Data.Tunables = req("overclock.data.tunables")
 
 -- sandbox --------------------------------------------------------------------
 OC.Sandbox = OC.Sandbox or {}

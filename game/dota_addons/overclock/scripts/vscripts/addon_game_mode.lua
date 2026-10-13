@@ -68,6 +68,7 @@ function GameMode:InitGameMode()
 	if Config.is_feature("roguelike") then
 		Run.install()
 	end
+	OC.Data.Tunables.install(OC.Core.Params)
 	Bridge.install()
 
 	self:RegisterEvents()
